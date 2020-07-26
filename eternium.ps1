@@ -447,10 +447,19 @@ $global:errpref = $ErrorActionPreference
      
     .DESCRIPTION
      VDS
-	eternium open 'http://google.com'
+	eternium open 'https://google.com'
+	eternium navigate 'https://dialogshell.com'
+	$currentpage = $(eternium navigate)
 	$value = $(eternium get 'id' 'Text1').value
+	$innertext = $(eternium get 'innerhtml' 'Hello<BR>There').innertext
 	eternium set 'class' 'Text1' 'value' 'new value'
 	eternium click 'name' 'button1'
+		$value = $(eternium compatget 'id' 'Text1').value
+		$innertext = $(eternium compatget 'innerhtml' 'Hello<BR>There').innertext
+		eternium compatset 'class' 'Text1' 'value' 'new value'
+		eternium compatclick 'name' 'button1'
+	eternium hide
+	eternium show
     
     .LINK
     https://dialogshell.com/vds/help/index.php/eternium
